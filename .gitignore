@@ -19,6 +19,27 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml (Logs de error del sistema)
 hs_err_pid*
 replay_pid*
+
+# Carpetas de salida y temporales (Build & Dist)
+/build/
+/dist/
+/target/
+/bin/
+**/bin/
+/test/
+
+# --- CONFIGURACIÓN DE NETBEANS ---
+
+# Ignorar configuraciones privadas y archivos generados automáticamente
+# (Evita problemas de rutas absolutas y versiones de Java locales)
+/nbproject/private/
+nbproject/genfiles.properties
+nbproject/build-impl.xml
+
+# PERMITIR archivos de configuración esenciales
+# (permite que el proyecto se reconozca en otras PCs)
+!nbproject/project.properties
+!nbproject/project.xml
