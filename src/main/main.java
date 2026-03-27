@@ -11,6 +11,8 @@ import java.util.Stack;
  */
 public class main {
 
+    static final int MAX_CAPACIDAD = 4;
+
     public static void main(String[] args) {
         Stack<String> Pila1 = new Stack<>();
         Stack<String> Pila2 = new Stack<>();
@@ -18,16 +20,17 @@ public class main {
         Stack<String> Pila4 = new Stack<>();
         Scanner key = new Scanner(System.in);
         //Switch
-        int num = 0; int num2 = 0;
-        
+        int num = 0;
+        int num2 = 0;
+
         //Contadores de Pilas
         int contPila1 = 4;
         int contPila2 = 4;
         int contPila3 = 4;
         int contPila4 = 0;
-        
+
         /**
-         * Código: 
+         * Código:
          */
 // -Asignar los Colores 
         //PRIMER TUBO
@@ -35,37 +38,44 @@ public class main {
         Pila1.push("azul");
         Pila1.push("rojo");
         Pila1.push("amarillo");
-        
+
         //SEGUNDO TUBO
         Pila2.push("amarillo");
         Pila2.push("amarillo");
         Pila2.push("rojo");
         Pila2.push("azul");
-        
+
         //TERCER TUBO
         Pila3.push("azul");
         Pila3.push("rojo");
         Pila3.push("amarillo");
         Pila3.push("azul");
-                
+
         // CUARTO TUBO (vacío, tubo auxiliar)
         //Pila4 comienza vacía
-        
         System.out.println("\n ======BALL SORT PUZZLE======");
         System.out.println("===Agrupa los colores en cada tubo===");
         System.out.println("\n ¡Reglas del juego!");
         System.out.println("Sólo puedes mover la bola del tope del tubo, puedes mover de a una bola por vez.");
-        System.out.println("La bola se debe mover a un tubo vació, o haciendo coincidir los colores o si sobra espacio en algún tubo.");
+        System.out.println("La bola se debe mover a un tubo vacío, o haciendo coincidir los colores o si sobra espacio en algún tubo.");
         System.out.println("La capacidad máxima de cada tubo es de 4 bolas.");
-        System.out.println("¿Cuándo ganas? cuando coincidan los colores en cada tubo, siendo cada tubo de un único color");
+        System.out.println("¿Cuándo ganas? cuando coincidan los colores en cada tubo, siendo cada tubo de un único color.");
         System.out.println("\n Las pilas se encuentran en este orden, ¿te animas a jugar?");
-        
-         /*
+
+        /*
          * -Mostar como estan formadas las pilas
          */
+        while (num != 5) {
 
-        while(num != 5) {
             mostrarPilas(Pila1, Pila2, Pila3, Pila4);
+
+            if (verificarVictoria(Pila1, Pila2, Pila3, Pila4)) {
+
+                System.out.println("\n ¡Felicidades! ¡Ganaste!");
+                break;
+
+            }
+
             System.out.print("¿De cúal pila desea mover el color del tope? |1|2|3|4| - (5) para salir del programa: ");
             num = key.nextInt();
 
@@ -149,15 +159,40 @@ public class main {
     }
 
     //Mostar Pilas
-    public static void mostrarPilas( Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4){
+    public static void mostrarPilas(Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4) {
         System.out.println("Pila 1: " + Pila1);
         System.out.println("Pila 2: " + Pila2);
         System.out.println("Pila 3: " + Pila3);
         System.out.println("Pila 4:" + Pila4);
     }
-    
+
     //Mover Colores e Insertar Colores
-    public Stack<String> moverColores(Stack<String> pilaMover, Stack<String> pilaIngresar, int contPila1, int contPila2){
+    public Stack<String> moverColores(Stack<String> pilaMover, Stack<String> pilaIngresar, int contPila1, int contPila2) {
         return null;
+    }
+
+    public static boolean verificarVictoria(Stack<String> p1, Stack<String> p2, Stack<String> p3, Stack<String> p4) {
+
+        Stack<?>[] pilas = {p1, p2, p3, p4};
+
+        for (Stack<?> pila : pilas) {
+
+            if (pila.isEmpty()) {
+                continue; // tubo vacío está bien
+            }
+            if (pila.size() != MAX_CAPACIDAD) {
+                return false; //tubo incompleto
+            }
+            Object color = pila.get(0);
+
+            for (Object bola : pila) {
+
+                if (!bola.equals(color)) {
+                    return false; // colores mezclados
+                }
+            }
+
+        }
+        return true;
     }
 }
