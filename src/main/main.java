@@ -28,7 +28,28 @@ public class main {
         
         /**
          * Código: 
-         * -Asignar los Colores 
+         */
+// -Asignar los Colores 
+        //PRIMER TUBO
+        Pila1.push("rojo");
+        Pila1.push("azul");
+        Pila1.push("rojo");
+        Pila1.push("amarillo");
+        
+        //SEGUNDO TUBO
+        Pila2.push("amarillo");
+        Pila2.push("amarillo");
+        Pila2.push("rojo");
+        Pila2.push("azul");
+        
+        //TERCER TUBO
+        Pila3.push("azul");
+        Pila3.push("rojo");
+        Pila3.push("amarillo");
+        Pila3.push("azul");
+                
+        
+         /*
          * -Mostar como estan formadas las pilas
          */
 
@@ -116,8 +137,11 @@ public class main {
     }
 
     //Mostar Pilas
-    public void mostrarPilas(Stack<String> pilaMuestra, Stack<String> pilaVacia){
-        
+    public void mostrarPilas( Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4){
+        System.out.println("Pila 1: " + Pila1);
+        System.out.println("Pila 2: " + Pila2);
+        System.out.println("Pila 3: " + Pila3);
+        System.out.println("Pila 4:" + Pila4);
     }
     
     //Mover Colores e Insertar Colores
