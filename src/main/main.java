@@ -48,12 +48,24 @@ public class main {
         Pila3.push("amarillo");
         Pila3.push("azul");
                 
+        // CUARTO TUBO (vacío, tubo auxiliar)
+        //Pila4 comienza vacía
+        
+        System.out.println("\n ======BALL SORT PUZZLE======");
+        System.out.println("===Agrupa los colores en cada tubo===");
+        System.out.println("\n ¡Reglas del juego!");
+        System.out.println("Sólo puedes mover la bola del tope del tubo, puedes mover de a una bola por vez.");
+        System.out.println("La bola se debe mover a un tubo vació, o haciendo coincidir los colores o si sobra espacio en algún tubo.");
+        System.out.println("La capacidad máxima de cada tubo es de 4 bolas.");
+        System.out.println("¿Cuándo ganas? cuando coincidan los colores en cada tubo, siendo cada tubo de un único color");
+        System.out.println("\n Las pilas se encuentran en este orden, ¿te animas a jugar?");
         
          /*
          * -Mostar como estan formadas las pilas
          */
 
         while(num != 5) {
+            mostrarPilas(Pila1, Pila2, Pila3, Pila4);
             System.out.print("¿De cúal pila desea mover el color del tope? |1|2|3|4| - (5) para salir del programa: ");
             num = key.nextInt();
 
@@ -137,7 +149,7 @@ public class main {
     }
 
     //Mostar Pilas
-    public void mostrarPilas( Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4){
+    public static void mostrarPilas( Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4){
         System.out.println("Pila 1: " + Pila1);
         System.out.println("Pila 2: " + Pila2);
         System.out.println("Pila 3: " + Pila3);
