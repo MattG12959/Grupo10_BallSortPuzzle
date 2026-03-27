@@ -24,11 +24,12 @@ public class main {
         int num2 = 0;
 
         //Contadores de Pilas
-        int contPila1 = 4;
-        int contPila2 = 4;
-        int contPila3 = 4;
-        int contPila4 = 0;
-
+        int cont1 = 0;
+        int cont2 = 1;
+        int cont3 = 2;
+        int cont4 = 3;
+        
+        int[] contadores = {4,4,4,0};
         /**
          * Código:
          */
@@ -86,13 +87,13 @@ public class main {
 
                     switch (num2) {
                         case 2:
-
+                            moverColores(Pila1, Pila2, cont1, cont2, contadores);
                             break;
                         case 3:
-
+                            moverColores(Pila1, Pila3, cont1, cont3, contadores);
                             break;
                         case 4:
-
+                            moverColores(Pila1, Pila4, cont1, cont4, contadores);
                             break;
                         default:
                             System.out.println("\nNúmero no valido, volver a ingresar.");
@@ -103,13 +104,13 @@ public class main {
                     num2 = key.nextInt();
                     switch (num2) {
                         case 1:
-
+                            moverColores(Pila2, Pila1, cont2, cont1, contadores);
                             break;
                         case 3:
-
+                            moverColores(Pila2, Pila3, cont2, cont3, contadores);
                             break;
                         case 4:
-
+                            moverColores(Pila2, Pila4, cont2, cont4, contadores);
                             break;
                         default:
                             System.out.println("\nNúmero no valido, volver a ingresar.");
@@ -120,13 +121,13 @@ public class main {
                     num2 = key.nextInt();
                     switch (num2) {
                         case 1:
-
+                            moverColores(Pila3, Pila1, cont3, cont1, contadores);
                             break;
                         case 2:
-
+                            moverColores(Pila3, Pila2, cont3, cont2, contadores);
                             break;
                         case 4:
-
+                            moverColores(Pila3, Pila4, cont3, cont4, contadores);
                             break;
                         default:
                             System.out.println("\nNúmero no valido, volver a ingresar.");
@@ -136,14 +137,14 @@ public class main {
                     System.out.print("\n¿A qué pila desea insertar el color? |1|2|3| : ");
                     num2 = key.nextInt();
                     switch (num2) {
+                        case 1:
+                            moverColores(Pila4, Pila1, cont4, cont1, contadores);
+                            break;
                         case 2:
-
+                            moverColores(Pila4, Pila2, cont4, cont2, contadores);
                             break;
                         case 3:
-
-                            break;
-                        case 4:
-
+                            moverColores(Pila4, Pila3, cont4, cont3, contadores);
                             break;
                         default:
                             System.out.println("\nNúmero no valido, volver a ingresar.");
@@ -155,6 +156,7 @@ public class main {
                 default:
                     System.out.println("\nNúmero no valido, volver a ingresar.");
             }
+            
         }
     }
 
@@ -167,8 +169,24 @@ public class main {
     }
 
     //Mover Colores e Insertar Colores
-    public Stack<String> moverColores(Stack<String> pilaMover, Stack<String> pilaIngresar, int contPila1, int contPila2) {
-        return null;
+    public static void moverColores(Stack<String> pilaMover, Stack<String> pilaIngresar, int contPila1, int contPila2, int[] contadores) {
+        if (!pilaMover.isEmpty() && contadores[contPila2] < 4) {
+            if (pilaIngresar.isEmpty()) {
+                pilaIngresar.push(pilaMover.pop());
+                contadores[contPila1]--;
+                contadores[contPila2]++;
+                System.out.println("Movimiento exitoso");
+            } else if (pilaMover.peek().equals(pilaIngresar.peek())) {
+                pilaIngresar.push(pilaMover.pop());
+                contadores[contPila1]--;
+                contadores[contPila2]++;
+                System.out.println("Movimiento exitoso");
+            } else {
+                System.out.println("Movimiento inválido");
+            }
+        } else {
+            System.out.println("Movimiento inválido");
+        }
     }
 
     public static boolean verificarVictoria(Stack<String> p1, Stack<String> p2, Stack<String> p3, Stack<String> p4) {
