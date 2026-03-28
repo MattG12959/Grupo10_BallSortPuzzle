@@ -12,12 +12,22 @@ import java.util.Stack;
 public class main {
 
     static final int MAX_CAPACIDAD = 4;
+    //Códigos de colores
+    static final String RESET    = "\u001B[0m";
+    static final String ROJO     = "\u001B[31m"; // texto rojo
+    static final String AZUL     = "\u001B[34m"; // texto azul
+    static final String AMARILLO = "\u001B[33m"; // texto amarillo
+    
+    
 
     public static void main(String[] args) {
         Stack<String> Pila1 = new Stack<>();
         Stack<String> Pila2 = new Stack<>();
         Stack<String> Pila3 = new Stack<>();
         Stack<String> Pila4 = new Stack<>();
+        
+
+       
         Scanner key = new Scanner(System.in);
         //Switch
         int num = 0;
@@ -66,6 +76,9 @@ public class main {
         /*
          * -Mostar como estan formadas las pilas
          */
+        
+        int origen=0;
+        
         while (num != 5) {
 
             mostrarPilas(Pila1, Pila2, Pila3, Pila4);
@@ -160,14 +173,41 @@ public class main {
         }
     }
 
-    //Mostar Pilas
-    public static void mostrarPilas(Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4) {
-        System.out.println("Pila 1: " + Pila1);
-        System.out.println("Pila 2: " + Pila2);
-        System.out.println("Pila 3: " + Pila3);
-        System.out.println("Pila 4:" + Pila4);
+    public static String obtenerColor(String color) {
+        switch (color) {
+            case "rojo":     return ROJO;
+            case "azul":     return AZUL;
+            case "amarillo": return AMARILLO;
+            default:         return "";
+        }
     }
-
+    
+    public static void mostrarPilas(Stack<String> Pila1, Stack<String> Pila2, Stack<String> Pila3, Stack<String> Pila4) {
+        Stack<?>[] pilas = {Pila1, Pila2, Pila3, Pila4};
+ 
+        System.out.println();
+ 
+        for (int fila = MAX_CAPACIDAD - 1; fila >= 0; fila--) {
+            System.out.print("  ");
+            for (Stack<?> pila : pilas) {
+                if (fila < pila.size()) {
+                    String color = (String) pila.get(fila);
+                    String codigoAnsi = obtenerColor(color);
+                    System.out.printf("|" + codigoAnsi + "%-9s" + RESET + "|", color);
+                } else {
+                    System.out.print("|         |");
+                }
+                System.out.print("  ");
+            }
+            System.out.println();
+        }
+ 
+        System.out.println("  -----------  -----------  -----------  -----------");
+        System.out.println("   Tubo  1       Tubo  2       Tubo  3       Tubo  4  ");
+        System.out.println();
+    }
+ 
+   
     //Mover Colores e Insertar Colores
     public static void moverColores(Stack<String> pilaMover, Stack<String> pilaIngresar, int contPila1, int contPila2, int[] contadores) {
         if (!pilaMover.isEmpty() && contadores[contPila2] < 4) {
